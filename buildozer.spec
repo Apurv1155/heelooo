@@ -1,6 +1,6 @@
 [app]
 
-# (str) Title of your applicatio
+# (str) Title of your application
 title = FaceApp Attendance
 
 # (str) Package name
@@ -11,6 +11,14 @@ package.domain = yourcompany.com
 
 # (str) Application versioning (method 1)
 version = 0.1
+
+# (str) Kivy application main file
+main.py = main.py
+# If your main file is named 'face_recognition.py', change the line above to:
+# main.py = face_recognition.py
+
+# (str) The directory where your source code is located
+source.dir = .
 
 # (list) Source files to include (let empty to include all the files
 # in the current directory)
@@ -73,11 +81,6 @@ orientation = portrait
 # This is an integer value that is incremented with each release.
 # It is used internally by Android to determine if a new version is available.
 android.version_code = 1
-
-# (str) The name of the main file of your application.
-main.py = main.py
-# If your main file is named 'face_recognition.py', change the line above to:
-# main.py = face_recognition.py
 
 # (list) Extra setup.py arguments to pass to the build process
 # android.extra_setup_args = --enable-gstreamer
