@@ -2,7 +2,7 @@ name: Build Kivy Android APK
 
 on:
   push:
-    brancahes:
+    branches:
       - main # Trigger on push to the 'main' branch
   pull_request:
     branches:
