@@ -3,7 +3,7 @@
 # (str) Title of your application
 title = FaceApp Attendance
 
-# (str) Package name
+# (str) Package name (MUST BE UNIQUE, e.g., com.yourname.yourapp)
 package.name = com.yourcompany.faceapp
 
 # (str) Package domain (needed for android/ios packaging)
@@ -13,8 +13,7 @@ package.domain = yourcompany.com
 version = 0.1
 
 # (str) Kivy application main file
-# IMPORTANT: This must match your main Python file name.
-# Based on your provided code, it's 'face_recognition.py'.
+# IMPORTANT: This must match the name of your main Python file.
 main.py = face_recognition.py
 
 # (str) The directory where your source code is located
@@ -28,14 +27,14 @@ source.include_exts = py,png,jpg,mp3,wav,kv,xml,json
 
 # (list) Application requirements
 # These packages will be installed by pip in the Android environment.
-# 'cython' is added to resolve the previous error.
+# 'cython' is crucial for Kivy and many Python extensions to compile for Android.
 requirements = python3,kivy,opencv,numpy,requests,setuptools,pyjnius,android,certifi,cython
 
 # (str) Kivy version to use
 kivy.version = 2.3.0
 
 # (str) Android API level to use (targetSdkVersion)
-# Using a recent stable API level.
+# Using a recent stable API level for better compatibility and security.
 android.api = 33
 
 # (str) Minimum Android API level required (minSdkVersion)
