@@ -4,16 +4,19 @@
 title = FaceApp Attendance
 
 # (str) Package name (MUST BE UNIQUE, e.g., com.yourname.yourapp)
+# IMPORTANT: Change 'yourcompany' and 'faceapp' to something unique to you.
 package.name = com.yourcompany.faceapp
 
 # (str) Package domain (needed for android/ios packaging)
+# IMPORTANT: Change 'yourcompany.com' to your own domain or a unique placeholder.
 package.domain = yourcompany.com
 
 # (str) Application versioning (method 1)
 version = 0.1
 
 # (str) Kivy application main file
-# IMPORTANT: This must match the name of your main Python file.
+# IMPORTANT: This must match the exact filename of your main Python app.
+# Based on your provided code, it is 'face_recognition.py'.
 main.py = face_recognition.py
 
 # (str) The directory where your source code is located
@@ -22,7 +25,7 @@ source.dir = .
 
 # (list) Source files to include (let empty to include all the files
 # in the current directory)
-# Ensure all your Python files, images, and audio files are listed or included by patterns.
+# Ensure all your Python files, images, and audio files are included.
 source.include_exts = py,png,jpg,mp3,wav,kv,xml,json
 
 # (list) Application requirements
@@ -45,7 +48,7 @@ android.targetsdk = 33
 
 # (list) Android architecture to build for
 # Building for both common ARM architectures for broader device compatibility.
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v7a, armeabi-v7a
 
 # (list) Android permissions
 # INTERNET for Google Forms/email, CAMERA for webcam,
