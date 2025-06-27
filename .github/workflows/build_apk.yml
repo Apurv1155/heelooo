@@ -2,13 +2,13 @@ name: Build Kivy Android APK
 
 on:
   push:
-    branches:
+    brancahes:
       - main # Trigger on push to the 'main' branch
   pull_request:
     branches:
       - main # Trigger on pull requests to the 'main' branch
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest # Use the latest Ubuntu runner
 
@@ -31,9 +31,13 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev liblzma-dev libbz2-dev
 
-    - name: Update Android SDK components
-      # This step ensures all necessary Android SDK components, including build-tools (for Aidl), are installed.
-      run: buildozer android update
+    - name: Accept Android SDK Licenses
+      # This step is CRUCIAL to resolve the "License Agreement" and "Aidl not found" errors.
+      # It simulates accepting the licenses, allowing SDK components to be downloaded.
+      run: |
+        yes | buildozer android update # Use 'yes' to automatically accept licenses
+        # The 'buildozer android update' command will also install/update SDK components.
+        # This implicitly covers the need for build-tools and Aidl.
 
     - name: Build Android Debug APK
       # This is the core Buildozer command.
