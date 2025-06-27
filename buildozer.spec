@@ -1,6 +1,6 @@
 [app]
 
-# (str) Title of your application
+# (str) Title of your applicatio
 title = FaceApp Attendance
 
 # (str) Package name
