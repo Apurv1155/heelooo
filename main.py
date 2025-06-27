@@ -50,7 +50,7 @@ TICK_ICON_PATH: str = "tick.png"
 # Google-Form configuration: View URL is used as referer header, POST goes to
 # the *formResponse* endpoint.
 GOOGLE_FORM_VIEW_URL: str = (
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLScO9FVgTOXCeuw210SK6qx2fXiouDqouy7TTuoI6UD80ZpYvQ/formResponse"
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLScO9FVgTOXCeuw210SK6qx2fXiouDqouy7TTuoI6UD80ZpYvQ/viewform"
 )
 GOOGLE_FORM_POST_URL: str = (
     "https://docs.google.com/forms/u/0/d/e/1FAIpQLScO9FVgTOXCeuw210SK6qx2fXiouDqouy7TTuoI6UD80ZpYvQ/formResponse"
@@ -224,6 +224,7 @@ class FaceApp(App):
         )
         root.add_widget(self.status_label)
 
+
         return root
 
     def on_stop(self) -> None:  # noqa: D401 (Kivy signature)
@@ -250,7 +251,7 @@ class FaceApp(App):
         """Updates the border around a Kivy button."""
         instance.canvas.after.clear()
         with instance.canvas.after:
-            Color(1, 1, 1, 1)
+            Color(1, 1, 1, 1) # White color for border
             Line(width=1.5, rectangle=(instance.x, instance.y, instance.width, instance.height))
 
     def _show_popup(self, title: str, content: BoxLayout, *, size=(0.8, 0.5)) -> Popup:  # noqa: D401
@@ -793,7 +794,7 @@ class FaceApp(App):
         Logger(f"[INFO] Recognised {name} ({emp_id}) – submitting attendance…")
         if self.sound:
             self.sound.play() # Play success sound.
-        # Submit to Google Form in a separate thread to prevent UI freezing.
+        # Submit to Google Form in a new thread to prevent UI freezing.
         threading.Thread(
             target=self._submit_to_google_form,
             args=(name, emp_id),
@@ -936,14 +937,14 @@ class FaceApp(App):
         icon_x_start = max(0, min(icon_x_start, w_frame - tick_icon_size))
         icon_y_start = max(0, min(icon_y_start, h_frame - tick_icon_size))
 
-        # Ensure coordinates are integers.
+        # Ensure icon_x_start and icon_y_start are integers
         icon_x_start = int(icon_x_start)
         icon_y_start = int(icon_y_start)
 
         # Get the Region of Interest (ROI) from the frame where the icon will be blended.
         roi = frame[icon_y_start : icon_y_start + tick_icon_size, icon_x_start : icon_x_start + tick_icon_size]
         
-        # Check if the ROI is valid (i.e., not out of bounds causing a slice of different size).
+        # Check if the ROI is valid (i.e., not out of bounds causing a slice of different size)
         if roi.shape[0] == tick_icon_size and roi.shape[1] == tick_icon_size:
             if icon.shape[2] == 4:  # If icon has an alpha channel (RGBA).
                 b, g, r, a = cv2.split(icon) # Split channels.
